@@ -60,7 +60,8 @@ public class AllVideos extends Fragment {
                     MediaStore.Video.Media.DATA,
                     MediaStore.Video.Media.TITLE,
                     MediaStore.Video.Media.SIZE,
-                    MediaStore.Video.Media.DURATION};
+                    MediaStore.Video.Media.DURATION
+                    };
             Cursor videocursor = getContext().getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
                     proj, null, null, null);
             if (videocursor != null) {

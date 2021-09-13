@@ -46,7 +46,7 @@ public class MusicAdapters extends RecyclerView.Adapter<MusicAdapters.ViewHolder
 
         viewHolder.title.setText(Audio.getTitle());
         viewHolder.duration.setText(Audio.getDuration());
-        viewHolder.AudiooCard.setOnClickListener(new View.OnClickListener() {
+        viewHolder.AudioCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TempMusicList.getInstance().setData(AudioList);
@@ -66,13 +66,13 @@ public class MusicAdapters extends RecyclerView.Adapter<MusicAdapters.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title, duration;
-        CardView AudiooCard;
+        CardView AudioCard;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.audio_title);
             duration = itemView.findViewById(R.id.audio_duration);
-            AudiooCard = itemView.findViewById(R.id.audio_card);
+            AudioCard = itemView.findViewById(R.id.audio_card);
         }
     }
 }

@@ -3,11 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/nav_music"
-        android:icon="@drawable/ic_music_player"
-        android:title="Music Player" />
-
-
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_video"
+            android:icon="@drawable/ic_video_player"
+            android:title="Video Player" />
+        <item
+            android:id="@+id/nav_music"
+            android:icon="@drawable/ic_music_player"
+            android:title="Music Player" />
+    </group>
 
 </menu>

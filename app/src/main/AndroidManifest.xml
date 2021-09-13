@@ -15,19 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name="com.sirstrone.videoplayer.activities.SplashActivity"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <!-- Loading toolbar , no need -->
+<!--        <activity-->
+<!--            android:name="com.sirstrone.videoplayer.activities.SplashActivity"-->
+<!--            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen">-->
+<!--        </activity>-->
         <activity
             android:name="com.sirstrone.videoplayer.activities.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
         <activity
             android:name="com.sirstrone.videoplayer.activities.VideoPlayerActivity"
             android:screenOrientation="landscape"
