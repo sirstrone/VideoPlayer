@@ -1,18 +1,15 @@
 package com.sirstrone.videoplayer.activities;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.sirstrone.videoplayer.R;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -23,7 +20,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * @author sirstrone
@@ -45,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        //@See: https://developer.android.google.cn/guide/navigation/navigation-ui#appbarconfiguration
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_video, R.id.nav_music)
                 .setDrawerLayout(drawer)

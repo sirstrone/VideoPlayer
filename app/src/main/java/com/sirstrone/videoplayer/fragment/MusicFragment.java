@@ -1,4 +1,4 @@
-package com.sirstrone.videoplayer.activities;
+package com.sirstrone.videoplayer.fragment;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -20,7 +20,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -33,52 +34,33 @@ import androidx.viewpager.widget.ViewPager;
  * @author sirstrone
  * @date: 9/10/21
  */
-public class MusicActivity extends AppCompatActivity {
+public class MusicFragment extends Fragment {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-
+    private View rootView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initView();
+    }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.musictoolbar);
-        setSupportActionBar(toolbar);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_music,container,false);
+        return rootView;
+    }
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = (ViewPager) findViewById(R.id.container);
+    private void initView() {
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mViewPager = (ViewPager) rootView.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-
+        TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_music, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 
@@ -104,7 +86,7 @@ public class MusicActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
 
 
-            View rootView = inflater.inflate(R.layout.fragment_music, container, false);
+            View rootView = inflater.inflate(R.layout.rec_music, container, false);
             int id = getArguments().getInt(ARG_SECTION_NUMBER, 0);
             musicModelList = new ArrayList<>();
             recyclerView = rootView.findViewById(R.id.musicRecycler);

@@ -3,12 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_video">
+    app:startDestination="@+id/nav_music">
 
     <fragment
         android:id="@+id/nav_video"
         android:name="com.sirstrone.videoplayer.fragment.VideoFragment"
         android:label="@string/menu_video"
         tools:layout="@layout/fragment_video" />
+    <fragment
+        android:id="@+id/nav_music"
+        android:name="com.sirstrone.videoplayer.fragment.MusicFragment"
+        android:label="@string/menu_music"
+        tools:layout="@layout/fragment_music" />
 
 </navigation>
