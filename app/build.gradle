@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId 'com.sirstrone.videoplayer'
         minSdkVersion 16
@@ -19,6 +19,7 @@ android {
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion '30.0.3'
 }
 
 dependencies {
@@ -32,7 +33,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    implementation 'com.google.android.exoplayer:exoplayer:2.9.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.15.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'

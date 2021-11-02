@@ -4,13 +4,12 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerNotificationManager;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -58,7 +57,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         playerView.setDefaultArtwork(getApplicationContext().getResources().getDrawable(R.drawable.default_artwork));
 
 
-        player = ExoPlayerFactory.newSimpleInstance(this);
+        player = new SimpleExoPlayer.Builder(this).build();
         playerView.setPlayer(player);
         controls.setPlayer(player);
 
@@ -71,7 +70,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
         MediaSource[] mediaSources = new MediaSource[musicList.size()];
         for (int i = 0; i < mediaSources.length; i++) {
             String s = musicList.get(i).getPath();
-            mediaSources[i] = new ExtractorMediaSource(Uri.parse(s), dataSourceFactory, extractorsFactory, null, null);
+            mediaSources[i] = new ProgressiveMediaSource.Factory(dataSourceFactory, extractorsFactory)
+                    .createMediaSource(Uri.parse(s));
         }
         MediaSource mediaSource = mediaSources.length == 1 ? mediaSources[0]
                 : new ConcatenatingMediaSource(mediaSources);

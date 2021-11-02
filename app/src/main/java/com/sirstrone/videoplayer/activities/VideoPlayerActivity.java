@@ -6,13 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
 import com.google.android.exoplayer2.extractor.ExtractorsFactory;
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -48,7 +47,7 @@ public class VideoPlayerActivity extends Activity {
         video_list = TempVideoList.getInstance().getData();
 
         playerView = findViewById(R.id.player);
-        player = ExoPlayerFactory.newSimpleInstance(this);
+        player = new SimpleExoPlayer.Builder(this).build();
         playerView.setPlayer(player);
         playerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
         player.setVideoScalingMode(C.VIDEO_SCALING_MODE_SCALE_TO_FIT);
@@ -61,7 +60,8 @@ public class VideoPlayerActivity extends Activity {
         MediaSource[] mediaSources = new MediaSource[video_list.size()];
         for (int i = 0; i < mediaSources.length; i++) {
             String s = video_list.get(i).getPath();
-            mediaSources[i] = new ExtractorMediaSource(Uri.parse(s), dataSourceFactory, extractorsFactory, null, null);
+            mediaSources[i] = new ProgressiveMediaSource.Factory(dataSourceFactory, extractorsFactory)
+                    .createMediaSource(Uri.parse(s));
         }
         MediaSource mediaSource = mediaSources.length == 1 ? mediaSources[0]
                 : new ConcatenatingMediaSource(mediaSources);
